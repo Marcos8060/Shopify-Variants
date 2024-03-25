@@ -10,7 +10,7 @@ export const menus = [
   },
   {
     label: "Products",
-    href: "/dashboard/risk",
+    href: "/dashboard/product",
     icon: <HiBuildingStorefront className="" />,
   },
 ];

@@ -1,8 +1,11 @@
-import { useSelector } from "react-redux";
+import CustomizedLayout from "@/components/layout/customized-layout";
 
 export default function Home() {
-  console.log(useSelector((store) => console.log(store)))
   return (
-    <>Hello World</>
+    <section>Welcome to the Home Page</section>
   );
 }
+
+Home.getLayout = (page) => (
+  <CustomizedLayout>{page}</CustomizedLayout>
+)
