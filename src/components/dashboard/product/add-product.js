@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Field, Form } from "formik";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { PiDotsSixVerticalBold } from "react-icons/pi";
+import InputValues from "./input-value";
 
 const AddProduct = () => {
   const [checked, setChecked] = useState(false);
@@ -15,7 +14,7 @@ const AddProduct = () => {
   const [optionValues, setOptionValues] = useState({});
   const [selectedOption, setSelectedOption] = useState("");
   const [optionValueInput, setOptionValueInput] = useState("");
-
+  const [savedOptionValues, setSavedOptionValues] = useState([]); // Array to store saved option values
   const initialValues = {
     title: "",
     description: "",
@@ -67,13 +66,15 @@ const AddProduct = () => {
     }
   };
 
+  const handleSaveOptions = () => {
+    // Combine all option values into a single array and save
+    const values = Object.values(optionValues).flat();
+    setSavedOptionValues(values);
+  };
+
   return (
     <section className="my-8 w-7/12">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        // onSubmit={handleAddProduct}
-      >
+      <Formik initialValues={initialValues} validationSchema={validationSchema}>
         {({ values }) => (
           <Form>
             <div className="space-y-4">
@@ -109,75 +110,27 @@ const AddProduct = () => {
 
                 {checked && (
                   <>
-                    <section>
-                      <p className="text-sm pl-6">Option Name</p>
-                      <div className="flex items-center gap-2">
-                        <PiDotsSixVerticalBold />
-                        <Field
-                          as="select"
-                          className="border border-gray rounded block focus:outline-none px-3 py-2 text-sm w-full"
-                          type="text"
-                          name="option"
-                          onChange={(e) => setSelectedOption(e.target.value)}
-                        >
-                          <option value="">Select Option</option>
-                          {options.map((option, index) => (
-                            <option key={index}>{option}</option>
-                          ))}
-                        </Field>
-                        <RiDeleteBin6Line
-                          className="cursor-pointer"
-                          onClick={() => handleDeleteOption(index)}
-                        />
-                      </div>
-                      <p className="text-sm pl-6 mt-4">Option Values</p>
-                      {selectedOption && (
-                        <div className="space-y-1">
-                          {optionValues[selectedOption]?.map((value, index) => (
-                            <div
-                              key={index}
-                              className="flex items-center gap-2"
-                            >
-                              <PiDotsSixVerticalBold />
-                              <Field
-                                placeholder="Option Value"
-                                className="border border-gray rounded block focus:outline-none px-3 py-2 text-sm w-full"
-                                type="text"
-                                name={`optionValue${index}`}
-                                value={value}
-                                disabled
-                              />
-                              <RiDeleteBin6Line
-                                className="cursor-pointer"
-                                onClick={() =>
-                                  handleDeleteValue(selectedOption, index)
-                                }
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      <div className="flex items-center gap-2 space-y-1">
-                        <div className="w-10/12 flex gap-2 items-center">
-                          <PiDotsSixVerticalBold />
-                          <Field
-                            placeholder="Option Value"
-                            className="border border-gray rounded block focus:outline-none px-3 py-2 text-sm w-full"
-                            type="text"
-                            name="optionValue"
-                            value={optionValueInput}
-                            onChange={handleInputChange}
-                          />
-                        </div>
-                        <button
-                          type="button"
-                          onClick={handleAddOptionValue}
-                          className="px-3 py-1 border border-primary text-xs rounded"
-                        >
-                          Add Value
-                        </button>
-                      </div>
-                    </section>
+                    <div className="flex items-center gap-1 pl-6">
+                      {savedOptionValues.map((item, index) => (
+                        <span className="text-xs bg-primary text-white rounded-3xl px-2 py-1" key={index}>{item}</span>
+                      ))}
+                    </div>
+                    <InputValues
+                      {...{
+                        options,
+                        handleDeleteOption,
+                        handleSaveOptions,
+                        handleAddOptionValue,
+                        handleInputChange,
+                        handleDeleteValue,
+                        handleAddOption,
+                        selectedOption,
+                        setSelectedOption,
+                        optionValueInput,
+                        setOptionValueInput,
+                        optionValues,
+                      }}
+                    />
                   </>
                 )}
               </section>

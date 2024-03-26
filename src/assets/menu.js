@@ -14,3 +14,46 @@ export const menus = [
     icon: <HiBuildingStorefront className="" />,
   },
 ];
+
+const option_names = [
+    {
+        size:[
+            {
+                value: 'small'
+            },
+            {
+                value: 'medium'
+            },
+        ]
+    },
+    {
+        color:[
+            {
+                value: 'black'
+            },
+            {
+                value: 'red'
+            },
+        ]
+    },
+    {
+        material:[
+            {
+                value: 'khaki'
+            },
+            {
+                value: 'jeans'
+            },
+        ]
+    },
+    {
+        style:[
+            {
+                value: 'modern'
+            },
+            {
+                value: 'vintage'
+            },
+        ]
+    },
+]
