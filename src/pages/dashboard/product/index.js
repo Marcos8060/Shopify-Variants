@@ -8,7 +8,7 @@ const Product = () => {
       <h1 className="text-xl">Products</h1>
       <section className="flex items-center justify-center h-[60vh] bg-white shadow-xl rounded">
         <Link className="" href="/dashboard/product/new-product">
-          <button className="bg-primary text-white px-4 py-2 shadow-2xl">
+          <button className="bg-primary rounded text-sm text-white px-4 py-2 shadow-2xl">
             Add Product
           </button>
         </Link>

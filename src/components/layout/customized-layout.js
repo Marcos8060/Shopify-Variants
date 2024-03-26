@@ -13,7 +13,7 @@ const CustomizedLayout = ({ children }) => {
 
       <div className="flex-1 overflow-y-auto">
         <CustomizedHeader />
-        <div className="p-6">{children}</div>
+        <div className="py-6 px-20">{children}</div>
       </div>
     </div>
   );
