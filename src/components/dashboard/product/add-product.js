@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Field, Form } from "formik";
 import InputValues from "./input-value";
+import { IoAdd } from "react-icons/io5";
 
 const AddProduct = () => {
   const [checked, setChecked] = useState(false);
@@ -15,6 +16,8 @@ const AddProduct = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [optionValueInput, setOptionValueInput] = useState("");
   const [savedOptionValues, setSavedOptionValues] = useState([]); // Array to store saved option values
+  const [isSaved, setIsSaved] = useState(false);
+
   const initialValues = {
     title: "",
     description: "",
@@ -70,6 +73,7 @@ const AddProduct = () => {
     // Combine all option values into a single array and save
     const values = Object.values(optionValues).flat();
     setSavedOptionValues(values);
+    setIsSaved(true);
   };
 
   return (
@@ -112,27 +116,46 @@ const AddProduct = () => {
                   <>
                     <div className="flex items-center gap-1 pl-6">
                       {savedOptionValues.map((item, index) => (
-                        <span className="text-xs bg-primary text-white rounded-3xl px-2 py-1" key={index}>{item}</span>
+                        <span
+                          className="text-xs bg-primary text-white rounded-3xl px-2 py-1"
+                          key={index}
+                        >
+                          {item}
+                        </span>
                       ))}
                     </div>
-                    <InputValues
-                      {...{
-                        options,
-                        handleDeleteOption,
-                        handleSaveOptions,
-                        handleAddOptionValue,
-                        handleInputChange,
-                        handleDeleteValue,
-                        handleAddOption,
-                        selectedOption,
-                        setSelectedOption,
-                        optionValueInput,
-                        setOptionValueInput,
-                        optionValues,
-                      }}
-                    />
+
+                    {!isSaved && (
+                      <>
+                        <InputValues
+                          {...{
+                            options,
+                            handleDeleteOption,
+                            handleSaveOptions,
+                            handleAddOptionValue,
+                            handleInputChange,
+                            handleDeleteValue,
+                            handleAddOption,
+                            selectedOption,
+                            setSelectedOption,
+                            optionValueInput,
+                            setOptionValueInput,
+                            optionValues,
+                          }}
+                        />
+                      </>
+                    )}
                   </>
                 )}
+
+                
+
+                <section>
+                  <div className="flex items-center gap-2 text-blue-600 text-sm cursor-pointer">
+                    <IoAdd />
+                    <p>Add another option</p>
+                  </div>
+                </section>
               </section>
             </div>
           </Form>

@@ -7,16 +7,13 @@ import { Formik, Field, Form } from "formik";
 const InputValues = (props) => {
   const {
     options,
-    handleDeleteOption,
     handleSaveOptions,
     handleAddOptionValue,
     handleInputChange,
     handleDeleteValue,
-    handleAddOption,
     selectedOption,
     setSelectedOption,
     optionValueInput,
-    setOptionValueInput,
     optionValues
   } = props;
   return (
