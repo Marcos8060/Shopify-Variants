@@ -6,17 +6,21 @@ import { IoAdd } from "react-icons/io5";
 
 const AddProduct = () => {
   const [checked, setChecked] = useState(false);
-  const [options, setOptions] = useState([
-    "Size",
-    "Color",
-    "Material",
-    "Style",
-  ]);
-  const [optionValues, setOptionValues] = useState({});
   const [selectedOption, setSelectedOption] = useState("");
-  const [optionValueInput, setOptionValueInput] = useState("");
-  const [savedOptionValues, setSavedOptionValues] = useState([]); // Array to store saved option values
-  const [isSaved, setIsSaved] = useState(false);
+  const [options, setOptions] = useState([
+    { name: "Size", values: [] },
+    { name: "Color", values: [] },
+    { name: "Material", values: [] },
+    { name: "Style", values: [] },
+  ]);
+
+  // Initialize optionValues object with an empty array for each option
+  const initialOptionValues = options.reduce((acc, option) => {
+    acc[option.name] = [];
+    return acc;
+  }, {});
+
+  const [optionValues, setOptionValues] = useState(initialOptionValues);
 
   const initialValues = {
     title: "",
@@ -28,52 +32,42 @@ const AddProduct = () => {
     description: Yup.string().required("Description is required!"),
   });
 
-  const handleAddOption = (option) => {
-    setOptions([...options, option]);
-    setOptionValues({ ...optionValues, [option]: [] });
+  const handleAddOption = () => {
+    setOptions([...options, { name: "", values: [] }]);
   };
 
   const handleDeleteOption = (index) => {
     const updatedOptions = [...options];
     updatedOptions.splice(index, 1);
     setOptions(updatedOptions);
-
-    const updatedOptionValues = { ...optionValues };
-    delete updatedOptionValues[options[index]];
-    setOptionValues(updatedOptionValues);
   };
 
-  const handleAddValue = (option, value) => {
-    if (value && !optionValues[option]?.includes(value)) {
-      setOptionValues((prevOptionValues) => ({
-        ...prevOptionValues,
-        [option]: [...(prevOptionValues[option] || []), value],
-      }));
-      setOptionValueInput(""); // Clear input after adding value
-    }
+  const handleOptionNameChange = (index, name) => {
+    const updatedOptions = [...options];
+    updatedOptions[index].name = name;
+    setOptions(updatedOptions);
   };
 
-  const handleDeleteValue = (option, index) => {
-    const updatedValues = [...optionValues[option]];
-    updatedValues.splice(index, 1);
-    setOptionValues({ ...optionValues, [option]: updatedValues });
+  const handleAddOptionValue = (index, value) => {
+    const updatedOptions = [...options];
+    updatedOptions[index].values.push(value);
+    setOptions(updatedOptions);
+    setOptionValues((prevOptionValues) => ({
+      ...prevOptionValues,
+      [selectedOption]: [...prevOptionValues[selectedOption], value],
+    }));
   };
 
-  const handleInputChange = (e) => {
-    setOptionValueInput(e.target.value);
-  };
-
-  const handleAddOptionValue = () => {
-    if (optionValueInput.trim() !== "") {
-      handleAddValue(selectedOption, optionValueInput); // Add value
-    }
-  };
-
-  const handleSaveOptions = () => {
-    // Combine all option values into a single array and save
-    const values = Object.values(optionValues).flat();
-    setSavedOptionValues(values);
-    setIsSaved(true);
+  const handleDeleteOptionValue = (index, valueIndex) => {
+    const updatedOptions = [...options];
+    updatedOptions[index].values.splice(valueIndex, 1);
+    setOptions(updatedOptions);
+    setOptionValues((prevOptionValues) => ({
+      ...prevOptionValues,
+      [selectedOption]: prevOptionValues[selectedOption].filter(
+        (_, idx) => idx !== valueIndex
+      ),
+    }));
   };
 
   return (
@@ -114,44 +108,35 @@ const AddProduct = () => {
 
                 {checked && (
                   <>
-                    <div className="flex items-center gap-1 pl-6">
-                      {savedOptionValues.map((item, index) => (
-                        <span
-                          className="text-xs bg-primary text-white rounded-3xl px-2 py-1"
-                          key={index}
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-
-                    {!isSaved && (
-                      <>
-                        <InputValues
-                          {...{
-                            options,
-                            handleDeleteOption,
-                            handleSaveOptions,
-                            handleAddOptionValue,
-                            handleInputChange,
-                            handleDeleteValue,
-                            handleAddOption,
-                            selectedOption,
-                            setSelectedOption,
-                            optionValueInput,
-                            setOptionValueInput,
-                            optionValues,
-                          }}
-                        />
-                      </>
-                    )}
+                    {options.map((option, index) => (
+                      <InputValues
+                       options={options}
+                       selectedOption={selectedOption}
+                       setSelectedOption={setSelectedOption}
+                       optionValues={optionValues} // Pass optionValues to InputValues
+                        key={index}
+                        name={option.name}
+                        values={option.values}
+                        handleOptionNameChange={(name) =>
+                          handleOptionNameChange(index, name)
+                        }
+                        handleAddOptionValue={(value) =>
+                          handleAddOptionValue(index, value)
+                        }
+                        handleDeleteOptionValue={(valueIndex) =>
+                          handleDeleteOptionValue(index, valueIndex)
+                        }
+                        handleDeleteOption={() => handleDeleteOption(index)}
+                      />
+                    ))}
                   </>
                 )}
 
-                
-
                 <section>
-                  <div className="flex items-center gap-2 text-blue-600 text-sm cursor-pointer">
+                  <div
+                    onClick={handleAddOption}
+                    className="flex items-center gap-2 text-blue-600 text-sm cursor-pointer"
+                  >
                     <IoAdd />
                     <p>Add another option</p>
                   </div>

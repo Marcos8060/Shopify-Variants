@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { PiDotsSixVerticalBold } from "react-icons/pi";
 import { IoMdAdd } from "react-icons/io";
-import { Formik, Field, Form } from "formik";
+import { Field } from "formik";
 
-const InputValues = (props) => {
-  const {
-    options,
-    handleSaveOptions,
-    handleAddOptionValue,
-    handleInputChange,
-    handleDeleteValue,
-    selectedOption,
-    setSelectedOption,
-    optionValueInput,
-    optionValues
-  } = props;
+const InputValues = ({
+  options,
+  handleSaveOptions,
+  handleAddOptionValue,
+  handleInputChange,
+  handleDeleteValue,
+  selectedOption,
+  setSelectedOption,
+  optionValueInput,
+  optionValues
+}) => {
+  const [localOptionValueInput, setLocalOptionValueInput] = useState("");
+
+  const handleLocalInputChange = (e) => {
+    setLocalOptionValueInput(e.target.value);
+  };
+
+  const handleLocalAddOptionValue = () => {
+    handleAddOptionValue(localOptionValueInput);
+    setLocalOptionValueInput("");
+  };
+
   return (
     <>
       <section>
@@ -27,18 +37,21 @@ const InputValues = (props) => {
             className="border border-gray rounded block focus:outline-none px-3 py-2 text-sm w-full"
             type="text"
             name="option"
+            value={selectedOption || ""}
             onChange={(e) => setSelectedOption(e.target.value)}
           >
             <option value="">Select Option</option>
             {options.map((option, index) => (
-              <option key={index}>{option}</option>
+              <option key={index} value={option.name}>
+                {option.name}
+              </option>
             ))}
           </Field>
         </div>
         <p className="text-sm pl-6 mt-4">Option Values</p>
-        {selectedOption && (
+        {selectedOption && optionValues[selectedOption] && (
           <div className="space-y-1">
-            {optionValues[selectedOption]?.map((value, index) => (
+            {optionValues[selectedOption].map((value, index) => (
               <div key={index} className="flex items-center gap-2">
                 <PiDotsSixVerticalBold />
                 <Field
@@ -65,14 +78,14 @@ const InputValues = (props) => {
               className="border border-gray rounded block focus:outline-none px-3 py-2 text-sm w-full"
               type="text"
               name="optionValue"
-              value={optionValueInput}
-              onChange={handleInputChange}
+              value={localOptionValueInput}
+              onChange={handleLocalInputChange}
             />
           </div>
           <div>
             <button
               type="button"
-              onClick={handleAddOptionValue}
+              onClick={handleLocalAddOptionValue}
               className="px-3 py-1 border border-primary text-sm rounded flex items-center gap-1"
             >
               <IoMdAdd />
