@@ -55,7 +55,7 @@ const Product = () => {
               <p className="text-center">{item.vendor}</p>
             </div>
             <div className="w-2/12">
-              <Link href={`/dashboard/product/${index}`}>
+              <Link href={{ pathname: `/dashboard/product/${index}`, query: { item: JSON.stringify(item) } }}>
                 <IoEye className="text-xl mx-auto" />
               </Link>
             </div>

@@ -72,26 +72,11 @@ const AddProduct = () => {
 
   return (
     <section className="my-8 w-7/12">
+        <h1 className="text-xl my-4">Add Product Variant</h1>
       <Formik initialValues={initialValues} validationSchema={validationSchema}>
         {({ values }) => (
           <Form>
             <div className="space-y-4">
-              <section className="space-y-4 bg-white p-4 shadow rounded">
-                <Field
-                  placeholder="Title"
-                  className="border border-gray rounded block focus:outline-none px-3 py-2 text-sm w-full"
-                  type="text"
-                  name="title"
-                />
-                <Field
-                  as="textarea"
-                  name="description"
-                  placeholder="Description"
-                  className="border border-gray rounded block focus:outline-none px-3 py-2 text-sm w-full"
-                  type="text"
-                  rows={4}
-                />
-              </section>
               <section className="space-y-4 bg-white p-4 shadow rounded">
                 <h1>Options</h1>
                 <div className="flex items-center gap-4">

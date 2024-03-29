@@ -78,20 +78,20 @@ export const products = [
         delivery: 'Within 2 working days'
     },
     {
-        img: '/sneaker.jpg',
-        product_name: 'Sneaker',
-        price: '5000',
+        img: '/bike.jpg',
+        product_name: 'Mtb Bike',
+        price: '45000',
         inventory: '7 In Stock',
-        vendor: 'Stephen',
+        vendor: 'Micheal',
         status: 'active',
         delivery: 'Within one week'
     },
     {
-        img: '/macbook.jpg',
-        product_name: 'Mac Book',
-        price: '150000',
-        inventory: 'Inventory not tracked',
-        vendor: 'Jared',
+        img: '/sneaker.jpg',
+        product_name: 'Sneaker',
+        price: '2300',
+        inventory: ' 3 In Stock',
+        vendor: 'Stephen',
         status: 'active',
         delivery: 'Within 5 working days'
     },
