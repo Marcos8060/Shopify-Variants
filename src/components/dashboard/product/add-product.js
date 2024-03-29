@@ -128,7 +128,7 @@ const AddProduct = () => {
                         }
                         handleDeleteOption={() => handleDeleteOption(index)}
                       />
-                    ))}
+                    ))} 
                   </>
                 )}
 

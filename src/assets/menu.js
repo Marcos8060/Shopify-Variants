@@ -57,3 +57,42 @@ const option_names = [
         ]
     },
 ]
+
+export const products = [
+    {
+        img: '/sneaker.jpg',
+        product_name: 'Sneaker',
+        price: '2300',
+        inventory: ' 3 In Stock',
+        vendor: 'Stephen',
+        status: 'active',
+        delivery: 'Within 5 working days'
+    },
+    {
+        img: '/macbook.jpg',
+        product_name: 'Mac Book',
+        price: '75000',
+        inventory: 'Inventory not Tracked',
+        vendor: 'Jared',
+        status: 'active',
+        delivery: 'Within 2 working days'
+    },
+    {
+        img: '/sneaker.jpg',
+        product_name: 'Sneaker',
+        price: '5000',
+        inventory: '7 In Stock',
+        vendor: 'Stephen',
+        status: 'active',
+        delivery: 'Within one week'
+    },
+    {
+        img: '/macbook.jpg',
+        product_name: 'Mac Book',
+        price: '150000',
+        inventory: 'Inventory not tracked',
+        vendor: 'Jared',
+        status: 'active',
+        delivery: 'Within 5 working days'
+    },
+]
