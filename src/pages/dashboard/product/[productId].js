@@ -24,7 +24,7 @@ const SingleProduct = () => {
       </section>
       <section className="flex gap-4">
         <div className="w-3/12">
-          <img className="rounded-xl " src={product.img} alt="" />
+          <img className="rounded-xl " src={product?.img} alt="" />
         </div>
         <div className="space-y-2">
           <p className="text-sm">
