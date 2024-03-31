@@ -93,7 +93,7 @@ const InputValues = ({ options, savedOptions, setSavedOptions }) => {
                       id={"optionValue-" + index}
                       onFocus={handleFocus}
                       placeholder="Option Value"
-                      className="border border-gray rounded block focus:outline-none px-3 py-2 text-sm w-full"
+                      className="border border-gray rounded block focus:outline-none px-3 py-2 text-xs w-full"
                       type="text"
                       name={`optionValues[${index}]`}
                     />
