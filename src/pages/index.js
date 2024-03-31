@@ -7,7 +7,7 @@ export default function Home() {
       <div>
         <img className="w-2/12 mx-auto" src="/shopify.png" alt="" />
       </div>
-      <section className="flex items-center justify-center h-[70vh] text-center w-6/12 mx-auto">
+      <section className="flex items-center justify-center h-[70vh] text-center md:w-6/12 mx-auto">
         <div className="space-y-4">
           <h1 className="font-bold text-5xl">
             Bring your ideas to life for $1/month
