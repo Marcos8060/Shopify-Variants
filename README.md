@@ -5,9 +5,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
+1. clone the repository
+
+"git clone https://github.com/Marcos8060/Shopify-Variants.git"
+
+2. Install the packages => "npm install"
+
+3. Run the development server => "npm run dev"
 
 ```
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
