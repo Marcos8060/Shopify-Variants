@@ -1,9 +1,9 @@
 import CustomizedLayout from "@/components/layout/customized-layout";
 import React from "react";
 import { useRouter } from "next/router";
-import AddProduct from "@/components/dashboard/product/add-product";
 import Link from "next/link";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import AddVariant from "@/components/dashboard/product/add-variant";
 
 const SingleProduct = () => {
   const router = useRouter();
@@ -52,7 +52,7 @@ const SingleProduct = () => {
           </p>
         </div>
       </section>
-      <AddProduct />
+      <AddVariant />
     </>
   );
 };

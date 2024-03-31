@@ -3,7 +3,7 @@ import { Formik, Field, Form } from "formik";
 import InputValues from "./input-value";
 import { IoAdd } from "react-icons/io5";
 
-const AddProduct = () => {
+const AddVariant = () => {
   const [checked, setChecked] = useState(false);
   const [options, setOptions] = useState([
     "Size",
@@ -55,4 +55,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default AddVariant;
