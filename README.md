@@ -1,6 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Technologies used
 
-## Getting Started
+* Nextjs
+* Tailwind
+
+### Installation Instructions
 
 First, run the development server:
 
