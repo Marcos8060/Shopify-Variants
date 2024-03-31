@@ -36,7 +36,7 @@ const AddProduct = () => {
                 <span className="text-xs">{item.name}</span>
                 <div className="flex items-center gap-1">
                   {item.values?.map((child, index) => (
-                    <div className="text-xs bg-secondary rounded-3xl px-2 py-1 font-bold">
+                    <div key={index} className="text-xs bg-secondary rounded-3xl px-2 py-1 font-bold">
                       <span key={index}>{child}</span>
                     </div>
                   ))}
