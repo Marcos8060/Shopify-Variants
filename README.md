@@ -1,9 +1,9 @@
-### Technologies used
+## Technologies used
 
 * Nextjs
 * Tailwind
 
-### Installation Instructions
+## Installation Instructions
 
 First, run the development server:
 
@@ -22,16 +22,16 @@ First, run the development server:
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-### Landing Page
+## Landing Page
 ![Landing Page Design](./public/landing.png)
 
-### Products Page
+## Products Page
 ![Landing Page Design](./public/products.png)
 
-### Product Details Page
+## Product Details Page
 ![Landing Page Design](./public/product-detail.png)
 
-### User flow Instructions
+## User flow Instructions
 
 * Click the view products button in the landing page that takes you to the dashboard section.
 * Under the Action column, click the "eye" icon to view the individual product details
