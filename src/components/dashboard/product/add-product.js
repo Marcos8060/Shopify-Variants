@@ -14,7 +14,7 @@ const AddProduct = () => {
   const [savedOptions, setSavedOptions] = useState([]);
 
   return (
-    <section className="my-8 w-7/12">
+    <section className="my-8 w-11/12">
       <h1 className="text-xl my-4">Add Product Variant</h1>
       <div className="space-y-4">
         <section className="space-y-4 bg-white p-4 shadow rounded">
