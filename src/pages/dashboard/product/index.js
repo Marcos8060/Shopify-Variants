@@ -1,12 +1,12 @@
 import { products } from "@/assets/menu";
-import CustomizedLayout from "@/components/layout/customized-layout";
+import Layout from "@/components/layout";
 import Link from "next/link";
 import React from "react";
 import { IoEye } from "react-icons/io5";
 
 const Product = () => {
   return (
-    <section className="space-y-8">
+    <section className="space-y-8 w-full">
       <h1 className="text-xl font-bold">Products</h1>
       <section className=" bg-white shadow rounded-xl">
         <div className="flex items-center justify-between p-2 font-bold text-sm">
@@ -66,6 +66,6 @@ const Product = () => {
   );
 };
 
-Product.getLayout = (page) => <CustomizedLayout>{page}</CustomizedLayout>;
+Product.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default Product;
