@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { PiDotsSixVerticalBold } from "react-icons/pi";
+import toast from "react-hot-toast";
 
 const InputValues = ({ options, savedOptions, setSavedOptions }) => {
   const [optionValues, setOptionValues] = useState([""]);
@@ -40,6 +41,7 @@ const InputValues = ({ options, savedOptions, setSavedOptions }) => {
 
     resetForm();
     setOptionValues([""]); // Reset optionValues state
+    toast.success('Option values added successfully')
   };
 
   const handleFocus = () => {
