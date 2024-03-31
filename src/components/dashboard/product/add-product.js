@@ -49,13 +49,6 @@ const AddProduct = () => {
               <InputValues {...{ options, savedOptions, setSavedOptions }} />
             </>
           )}
-
-          <section>
-            <div className="flex items-center gap-2 text-blue-600 text-sm cursor-pointer">
-              <IoAdd />
-              <p>Add another option</p>
-            </div>
-          </section>
         </section>
       </div>
     </section>

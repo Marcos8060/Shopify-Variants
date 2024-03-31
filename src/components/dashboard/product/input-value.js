@@ -69,7 +69,7 @@ const InputValues = ({ options, savedOptions, setSavedOptions }) => {
               <PiDotsSixVerticalBold />
               <Field
                 as="select"
-                className="border border-gray rounded block focus:outline-none px-3 py-2 text-sm w-full"
+                className="border border-gray rounded block focus:outline-none px-3 py-2 text-xs w-full"
                 name="option"
               >
                 <option value="">Select Option</option>
@@ -118,9 +118,9 @@ const InputValues = ({ options, savedOptions, setSavedOptions }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-3 py-1 bg-primary text-white text-sm rounded flex items-center gap-1"
+                className="px-3 py-1 bg-primary text-white text-xs rounded flex items-center gap-1"
               >
-                Save
+                Done
               </button>
             </section>
           </section>
