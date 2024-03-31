@@ -15,7 +15,7 @@ const InputValues = ({ options, savedOptions, setSavedOptions }) => {
   const validationSchema = Yup.object().shape({
     option: Yup.string().required("Option Name is required"),
     optionValues: Yup.array()
-      .of(Yup.string().required("Option Value is required"))
+      .of(Yup.string().required("At least one option value is required!"))
       .required("At least one Option Value is required"),
   });
 
@@ -41,14 +41,17 @@ const InputValues = ({ options, savedOptions, setSavedOptions }) => {
 
     resetForm();
     setOptionValues([""]); // Reset optionValues state
-    toast.success('Option values added successfully')
+    toast.success("Option values added successfully");
   };
 
   const handleFocus = () => {
     // Check if the last option value field is focused
-    if (document.activeElement === document.getElementById("optionValue-" + (optionValues.length - 1))) {
+    if (
+      document.activeElement ===
+      document.getElementById("optionValue-" + (optionValues.length - 1))
+    ) {
       // Add another empty string to the optionValues array
-      setOptionValues(prevValues => [...prevValues, ""]);
+      setOptionValues((prevValues) => [...prevValues, ""]);
     }
   };
 
@@ -61,7 +64,7 @@ const InputValues = ({ options, savedOptions, setSavedOptions }) => {
       {({ isSubmitting }) => (
         <Form>
           <section>
-            <p className="text-sm pl-6">Option Name</p>
+            <p className="text-sm pl-6">Option name</p>
             <div className="flex items-center gap-2">
               <PiDotsSixVerticalBold />
               <Field
@@ -83,29 +86,31 @@ const InputValues = ({ options, savedOptions, setSavedOptions }) => {
               className="text-red font-bold text-xs pl-6"
             />
 
-            <p className="text-sm pl-6 mt-4">Option Values</p>
+            <p className="text-sm pl-6 mt-4">Option values</p>
             <div className="space-y-1">
               {optionValues.map((value, index) => (
-                <div key={index} className="flex items-center gap-2">
+                <section key={index} className="flex items-center gap-2">
                   <div>
                     <PiDotsSixVerticalBold />
                   </div>
-                  <div className="w-full">
-                    <Field
-                      id={"optionValue-" + index}
-                      onFocus={handleFocus}
-                      placeholder="Option Value"
-                      className="border border-gray rounded block focus:outline-none px-3 py-2 text-xs w-full"
-                      type="text"
-                      name={`optionValues[${index}]`}
-                    />
-                    <ErrorMessage
-                      name={`optionValues[${index}]`}
-                      component="div"
-                      className="text-red font-bold text-xs"
-                    />
-                  </div>
-                </div>
+                  <section className="w-full flex items-center gap-1">
+                    <div className="w-full">
+                      <Field
+                        id={"optionValue-" + index}
+                        onFocus={handleFocus}
+                        placeholder="Option Value"
+                        className="border border-gray rounded block focus:outline-none px-3 py-2 text-xs w-full"
+                        type="text"
+                        name={`optionValues[${index}]`}
+                      />
+                      <ErrorMessage
+                        name={`optionValues[${index}]`}
+                        component="div"
+                        className="text-red font-bold text-xs"
+                      />
+                    </div>
+                  </section>
+                </section>
               ))}
             </div>
 
@@ -115,7 +120,7 @@ const InputValues = ({ options, savedOptions, setSavedOptions }) => {
                 disabled={isSubmitting}
                 className="px-3 py-1 bg-primary text-white text-sm rounded flex items-center gap-1"
               >
-                {isSubmitting ? "Saving..." : "Save"}
+                Save
               </button>
             </section>
           </section>
